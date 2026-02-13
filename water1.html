@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wonderla · deep waterpark</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: #d9f0f2;
+        }
+
+        .login-overlay {
+            position: fixed;
+            inset: 0;
+            background: #054147e6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        .vit-ap-logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #0b747f;
+            color: #ffd78c;
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            border: 4px solid #ffeec2;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .vit-ap-logo i {
+            font-size: 2rem;
+            color: #ffd78c;
+        }
+
+        .login-logo {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background: #0b747f;
+            color: #ffd78c;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            border: 4px solid #ffeec2;
+        }
+
+        .login-card {
+            background: white;
+            max-width: 380px;
+            width: 90%;
+            padding: 2rem 1.8rem;
+            border-radius: 28px;
+            border: 2px solid #0a7b84;
+        }
+
+        .login-card h2 {
+            color: #0a636b;
+            margin-bottom: 0.4rem;
+        }
+
+        .login-sub {
+            color: #22616a;
+            margin-bottom: 1.7rem;
+            border-bottom: 2px solid #b1dfe6;
+            padding-bottom: 0.8rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .input-group label {
+            font-weight: 600;
+            color: #0a5d66;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #bde3e8;
+            border-radius: 40px;
+            background: #f6fdfd;
+        }
+
+        .input-group input:focus {
+            border-color: #04838c;
+            outline: none;
+        }
+
+        .login-btn {
+            background: #0c727c;
+            color: white;
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .error-msg {
+            color: #b33a2a;
+            font-weight: 600;
+            margin-top: 0.8rem;
+        }
+
+        .fake-hint {
+            background: #e3f2f2;
+            padding: 0.8rem;
+            border-radius: 30px;
+            margin-top: 1.8rem;
+            border: 2px solid #ffb85c;
+            display: none;
+        }
+
+        .fake-hint.show {
+            display: block;
+        }
+
+        .main-site {
+            display: none;
+        }
+
+        .header {
+            background: white;
+            padding: 0.7rem 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 5px solid #febf5e;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            background: #0b747f;
+            color: #ffd78c;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.9rem;
+        }
+
+        .brand {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: #004c57;
+        }
+
+        .brand span {
+            color: #e68400;
+        }
+
+        .vit-header {
+            background: #ffedb0;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            border: 3px solid #faa51a;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .profile-pic {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: #0c8793;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 2rem;
+            color: white;
+            border: 4px solid #ffeec2;
+        }
+
+        .user-greeting {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .greeting-text {
+            font-weight: 600;
+            color: #0a6a75;
+        }
+
+        .nav-pills {
+            display: flex;
+            gap: 1.6rem;
+            margin: 1.5rem 5% 0.5rem;
+            background: white;
+            padding: 1rem 1.8rem;
+            border-radius: 60px;
+            border: 3px solid #99d6dd;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+            color: #0b6a74;
+            cursor: pointer;
+            border-bottom: 4px solid transparent;
+        }
+
+        .nav-item i {
+            font-size: 1.7rem;
+            color: #0e818d;
+        }
+
+        .nav-item.active-tab {
+            border-bottom-color: #fd9426;
+            color: #02434b;
+        }
+
+        .section-container {
+            margin: 1rem 5%;
+        }
+
+        .category-section {
+            display: none;
+        }
+
+        .category-section.active-section {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #075a63;
+            display: flex;
+            gap: 12px;
+            margin-bottom: 1.8rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 28px 16px;
+            padding: 1.8rem 1rem;
+            border: 3px solid #fbc164;
+            text-align: center;
+        }
+
+        .card i {
+            font-size: 3rem;
+            color: #0e818d;
+            background: #e0f3f5;
+            padding: 14px;
+            border-radius: 30px;
+        }
+
+        .card h3 {
+            margin: 0.7rem 0 0.2rem;
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #06515b;
+        }
+
+        .price {
+            font-weight: 700;
+            color: #aa4213;
+            background: #fde2c0;
+            padding: 5px 18px;
+            border-radius: 40px;
+            display: inline-block;
+            margin: 12px 0;
+        }
+
+        .book-btn {
+            background: #ffae42;
+            border: none;
+            font-weight: 700;
+            padding: 10px 22px;
+            border-radius: 40px;
+            width: 100%;
+            border-bottom: 5px solid #b87329;
+            cursor: pointer;
+        }
+
+        .booking-summary {
+            background: white;
+            border-radius: 30px 16px;
+            padding: 1.5rem 1.8rem;
+            margin: 2rem 5%;
+            border: 4px solid #a4dbe0;
+        }
+
+        .summary-header {
+            display: flex;
+            gap: 14px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0a6873;
+        }
+
+        .order-list {
+            margin-top: 1.2rem;
+            background: #cceceb;
+            padding: 1.2rem;
+            border-radius: 32px;
+            list-style: none;
+        }
+
+        .order-list li {
+            background: white;
+            padding: 0.7rem 1.2rem;
+            margin-bottom: 8px;
+            border-radius: 60px;
+            display: flex;
+            justify-content: space-between;
+            border-left: 8px solid #1199a3;
+        }
+
+        footer {
+            background: #045a61;
+            color: white;
+            padding: 1.8rem 5%;
+            margin-top: 2.2rem;
+            border-radius: 50px 50px 0 0;
+        }
+
+        .vit-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .vit-footer span {
+            background: #fbe89e;
+            color: #023b42;
+            padding: 0.4rem 1.5rem;
+            border-radius: 40px;
+            border: 3px solid #fdad2a;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .carousel,
+        .carousel-inner,
+        .carousel-item,
+        .carousel-item img {
+            height: 450px;
+            width: 100%;
+        }
+
+        .carousel-item img {
+            object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+            .carousel,
+            .carousel-inner,
+            .carousel-item,
+            .carousel-item img {
+                height: 300px;
+            }
+        }
+        .login-srihari{
+            position: absolute;
+            top: 20px; 
+            right: 20px;
+            background: #0b747f;    
+            color: #e6bb6c;
+            padding: 12px 24px;
+            border-radius: 40px;
+            border: 4px solid #ffeec2;
+            padding: 12px 24px;
+            font-size: 1.8rem;
+        }
+        .slides{
+            height:60vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loginOverlay" class="login-overlay">
+        <div class="vit-ap-logo">
+            <a href="https://vitap.ac.in/" target="_blank">VIT-AP</a>
+        </div>
+        <div class="login-srihari">
+            <a href="https://drive.google.com/file/d/1GY8ZktjNVLWUMAXqoCRMI7u1KQu1O2HC/view?usp=sharing" target="_blank">Sri Hari</a>
+        </div>
+        <div class="login-card">
+            <h2>wonderla</h2>
+            <div class="login-sub">deep waterpark login</div>
+            
+            <div class="input-group">
+                <label>username</label>
+                <input type="text" id="username" placeholder="e.g. admin, alex, tara" autocomplete="off">
+            </div>
+            
+            <div class="input-group">
+                <label>password</label>
+                <input type="password" id="password" placeholder="enter secret">
+            </div>
+            
+            <button id="loginBtn" class="login-btn"><i class="fas fa-chevron-circle-right"></i> dive in</button>
+            <div id="loginError" class="error-msg"></div>
+            
+            <div id="hintDiv" class="fake-hint">
+                <i class="fas fa-life-ring"></i> hint: admin/wave · alex/splash · sam/ride · tara/flow · jordan/fun
+            </div>
+        </div>
+    </div>
+
+    <div id="mainSite" class="main-site">
+        <header class="header">
+            <div class="logo-area">
+                <div class="logo-icon"><i class="fas fa-umbrella-beach"></i></div>
+                <div class="brand">wonder<span>la</span></div>
+            </div>
+            <div class="vit-header">
+                <i class="fas fa-ticket-alt"></i> deep waterpark <i class="fas fa-dharmachakra"></i>
+            </div>
+            <div class="user-greeting">
+                <span id="welcomeMsg" class="greeting-text">welcome, guest!</span>
+                <div id="profilePic" class="profile-pic">G</div>
+            </div>
+        </header>
+
+        <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner slides">
+                <div class="carousel-item active">
+                    <img src="https://www.prestigesouthernstar.info/images/prestige/wonderla-amusement-park.webp" alt="slide1">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.staybook.in/things-to-do/skip-the-line-admission-wonderla-amusement-park-kochi/1.jpg" alt="slide2">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://media.insider.in/image/upload/c_crop,g_custom/v1767501499/idjxqs2w2krvnffq3ews.jpg" alt="slide3">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+        <div class="nav-pills">
+            <div class="nav-item active-tab" data-section="rides">
+                <i class="fas fa-water-ladder"></i> <span>rides</span>
+            </div>
+            <div class="nav-item" data-section="food">
+                <i class="fas fa-utensils"></i> <span>food</span>
+            </div>
+            <div class="nav-item" data-section="stays">
+                <i class="fas fa-campground"></i> <span>stays</span>
+            </div>
+            <div class="nav-item" data-section="events">
+                <i class="fas fa-calendar-alt"></i> <span>events</span>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <div id="rides" class="category-section active-section">
+                <div class="section-title">
+                    <i class="fas fa-water"></i> wave adventures
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <i class="fas fa-dragon"></i>
+                        <h3>twister</h3>
+                        <div class="price">₹ 850</div>
+                        <button class="book-btn" data-item="twister slide" data-price="850"><i class="fas fa-check"></i> book now</button>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-water"></i>
+                        <h3>lazy river</h3>
+                        <div class="price">₹ 490</div>
+                        <button class="book-btn" data-item="lazy river" data-price="490"><i class="fas fa-check"></i> book now</button>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-swimmer"></i>
+                        <h3>whirlpool</h3>
+                        <div class="price">₹ 1100</div>
+                        <button class="book-btn" data-item="whirlpool rush" data-price="1100"><i class="fas fa-check"></i> book now</button>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-child"></i>
+                        <h3>kiddie bay</h3>
+                        <div class="price">₹ 390</div>
+                        <button class="book-btn" data-item="kiddie pool" data-price="390"><i class="fas fa-check"></i> book now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="food" class="category-section">
+                <div class="section-title">
+                    <i class="fas fa-ice-cream"></i> splash bites
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <i class="fas fa-pizza-slice"></i>
+                        <h3>pizza</h3>
+                        <div class="price">₹ 240</div>
+                        <button class="book-btn" data-item="margherita pizza" data-price="240"><i class="fas fa-check"></i> add</button>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-ice-cream"></i>
+                        <h3>wonder cone</h3>
+                        <div class="price">₹ 95</div>
+                        <button class="book-btn" data-item="ice cream" data-price="95"><i class="fas fa-check"></i> add</button>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-cocktail"></i>
+                        <h3>mocktails</h3>
+                        <div class="price">₹ 130</div>
+                        <button class="book-btn" data-item="mocktail" data-price="130"><i class="fas fa-check"></i> add</button>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-hamburger"></i>
+                        <h3>burger</h3>
+                        <div class="price">₹ 190</div>
+                        <button class="book-btn" data-item="veggie burger" data-price="190"><i class="fas fa-check"></i> add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="stays" class="category-section">
+                <div class="section-title">
+                    <i class="fas fa-campground"></i> cabana & stays
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <i class="fas fa-umbrella-beach"></i>
+                        <h3>day cabana</h3>
+                        <div class="price">₹ 1990</div>
+                        <button class="book-btn" data-item="beach cabana" data-price="1990"><i class="fas fa-check"></i> reserve</button>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-water"></i>
+                        <h3>pool villa</h3>
+                        <div class="price">₹ 5490</div>
+                        <button class="book-btn" data-item="private pool villa" data-price="5490"><i class="fas fa-check"></i> reserve</button>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-campground"></i>
+                        <h3>cabanas</h3>
+                        <div class="price">₹ 1490</div>
+                        <button class="book-btn" data-item="cabana lounge" data-price="1490"><i class="fas fa-check"></i> reserve</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="events" class="category-section">
+                <div class="section-title">
+                    <i class="fas fa-calendar-week"></i> special events
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <i class="fas fa-music"></i>
+                        <h3>dj night</h3>
+                        <div class="price">₹ 650</div>
+                        <button class="book-btn" data-item="poolside dj pass" data-price="650"><i class="fas fa-check"></i> join</button>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-birthday-cake"></i>
+                        <h3>pool party</h3>
+                        <div class="price">₹ 1250</div>
+                        <button class="book-btn" data-item="birthday bash" data-price="1250"><i class="fas fa-check"></i> join</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="booking-summary">
+            <div class="summary-header">
+                <i class="fas fa-shopping-cart"></i> <span>your splash cart · <span id="cartCount">0 items</span></span>
+            </div>
+            <ul id="orderList" class="order-list">
+                <li style="justify-content: center;">— no bookings yet —</li>
+            </ul>
+        </div>
+
+        <footer>
+            <div class="vit-footer">
+                <span> emergency</span>
+                <span>kochi · bangalore · chennai</span>
+                <span>wonderla deep park</span>
+            </div>
+            <div style="text-align: center; margin-top: 1.5rem; opacity: 0.9;">
+                Created by <strong>Sri Hari-23BCE9966</strong>
+                <a href="https://drive.google.com/file/d/1GY8ZktjNVLWUMAXqoCRMI7u1KQu1O2HC/view?usp=sharing" target="_blank">Click here for my resume</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+    
+    <script>
+        (function () {
+            const usersDB = [
+                { username: "admin", password: "wave" },
+                { username: "alex", password: "splash" },
+                { username: "sam", password: "ride" },
+                { username: "tara", password: "flow" },
+                { username: "jordan", password: "fun" }
+            ];
+
+            const loginLayer = document.getElementById("loginOverlay");
+            const mainWrapper = document.getElementById("mainSite");
+            const usernameInput = document.getElementById("username");
+            const passwordInput = document.getElementById("password");
+            const loginButton = document.getElementById("loginBtn");
+            const errorBox = document.getElementById("loginError");
+            const profileCircle = document.getElementById("profilePic");
+            const welcomeText = document.getElementById("welcomeMsg");
+            const cartList = document.getElementById("orderList");
+            const cartCounter = document.getElementById("cartCount");
+            const hintBox = document.getElementById("hintDiv");
+
+            let bookingCart = [];
+
+            function refreshCartUI() {
+                if (bookingCart.length <= 0) {
+                    cartList.innerHTML = '<li style="justify-content: center;">— no bookings yet —</li>';
+                    cartCounter.innerText = "0 items";
+                    return;
+                }
+
+                let htmlOutput = "";
+                let total = 0;
+
+                for (let i = 0; i < bookingCart.length; i++) {
+                    let itemObj = bookingCart[i];
+                    total = total + itemObj.price;
+                    htmlOutput += '<li><span><i class="fas fa-check-circle" style="color: #0ea1ab;"></i> ' + itemObj.name + '</span><span style="background: #def0f0; padding: 4px 16px; border-radius: 50px;">₹' + itemObj.price + "</span></li>";
+                }
+
+                htmlOutput += '<li style="background: #ffd966; border-left-color: #b6581c; font-weight: bold;"><span>total</span><span>₹' + total + "</span></li>";
+                cartList.innerHTML = htmlOutput;
+
+                if (bookingCart.length === 1) {
+                    cartCounter.innerText = "1 item";
+                } else {
+                    cartCounter.innerText = bookingCart.length + " items";
+                }
+            }
+
+            function handleBookingClick(event) {
+                const clickedBtn = event.currentTarget;
+                const itemName = clickedBtn.getAttribute("data-item");
+                const itemPriceRaw = clickedBtn.getAttribute("data-price");
+                const parsedPrice = parseInt(itemPriceRaw, 10);
+
+                if (!itemName || isNaN(parsedPrice)) {
+                    return;
+                }
+
+                bookingCart.push({ name: itemName, price: parsedPrice });
+                refreshCartUI();
+
+                clickedBtn.style.background = "#b5e6a7";
+                clickedBtn.style.borderBottomColor = "#5e8c5a";
+
+                setTimeout(function () {
+                    clickedBtn.style.background = "#ffae42";
+                    clickedBtn.style.borderBottomColor = "#b87329";
+                }, 200);
+            }
+
+            function attachBookingEvents() {
+                const allBookBtns = document.querySelectorAll(".book-btn");
+
+                for (let i = 0; i < allBookBtns.length; i++) {
+                    allBookBtns[i].removeEventListener("click", handleBookingClick);
+                    allBookBtns[i].addEventListener("click", handleBookingClick);
+                }
+            }
+
+            const navItems = document.querySelectorAll(".nav-item");
+            const sectionMap = {
+                rides: document.getElementById("rides"),
+                food: document.getElementById("food"),
+                stays: document.getElementById("stays"),
+                events: document.getElementById("events")
+            };
+
+            function switchSection(sectionKey) {
+                if (sectionMap.rides) sectionMap.rides.classList.remove("active-section");
+                if (sectionMap.food) sectionMap.food.classList.remove("active-section");
+                if (sectionMap.stays) sectionMap.stays.classList.remove("active-section");
+                if (sectionMap.events) sectionMap.events.classList.remove("active-section");
+
+                if (sectionMap[sectionKey]) {
+                    sectionMap[sectionKey].classList.add("active-section");
+                }
+
+                for (let i = 0; i < navItems.length; i++) {
+                    navItems[i].classList.remove("active-tab");
+                    if (navItems[i].dataset.section === sectionKey) {
+                        navItems[i].classList.add("active-tab");
+                    }
+                }
+            }
+
+            for (let i = 0; i < navItems.length; i++) {
+                navItems[i].addEventListener("click", function () {
+                    const sectionName = this.dataset.section;
+                    switchSection(sectionName);
+                });
+            }
+
+            function processLogin(event) {
+                event.preventDefault();
+
+                const enteredUser = usernameInput.value.trim();
+                const enteredPass = passwordInput.value.trim();
+                let foundUser = null;
+
+                for (let i = 0; i < usersDB.length; i++) {
+                    const dbUser = usersDB[i];
+                    if (
+                        dbUser.username.toLowerCase() === enteredUser.toLowerCase() &&
+                        dbUser.password === enteredPass
+                    ) {
+                        foundUser = dbUser;
+                        break;
+                    }
+                }
+
+                if (foundUser) {
+                    loginLayer.style.display = "none";
+                    mainWrapper.style.display = "block";
+                    profileCircle.innerText = enteredUser.charAt(0).toUpperCase();
+                    welcomeText.innerText = "welcome, " + enteredUser + "!";
+                    bookingCart = [];
+                    refreshCartUI();
+                    attachBookingEvents();
+                    switchSection("rides");
+                    errorBox.innerText = "";
+                    hintBox.classList.remove("show");
+                } else {
+                    errorBox.innerText = "invalid credentials";
+                    hintBox.classList.add("show");
+                }
+            }
+
+            loginButton.addEventListener("click", processLogin);
+            passwordInput.addEventListener("keypress", function (e) {
+                if (e.key === "Enter") processLogin(e);
+            });
+            usernameInput.addEventListener("keypress", function (e) {
+                if (e.key === "Enter") processLogin(e);
+            });
+
+            refreshCartUI();
+            attachBookingEvents();
+        })();
+    </script>
+</body>
+</html>
