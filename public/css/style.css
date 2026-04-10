@@ -1,0 +1,477 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+    background: #d9f0f2;
+}
+
+.login-overlay {
+    position: fixed;
+    inset: 0;
+    background: #054147e6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.vit-ap-logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #0b747f;
+    color: #ffd78c;
+    padding: 12px 24px;
+    border-radius: 40px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    border: 4px solid #ffeec2;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.vit-ap-logo i {
+    font-size: 2rem;
+    color: #ffd78c;
+}
+
+.login-logo {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    background: #0b747f;
+    color: #ffd78c;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    border: 4px solid #ffeec2;
+}
+
+.login-card {
+    background: white;
+    max-width: 380px;
+    width: 90%;
+    padding: 2rem 1.8rem;
+    border-radius: 28px;
+    border: 2px solid #0a7b84;
+}
+
+.login-card h2 {
+    color: #0a636b;
+    margin-bottom: 0.4rem;
+}
+
+.login-sub {
+    color: #22616a;
+    margin-bottom: 1.7rem;
+    border-bottom: 2px solid #b1dfe6;
+    padding-bottom: 0.8rem;
+}
+
+.input-group {
+    margin-bottom: 1.2rem;
+}
+
+.input-group label {
+    font-weight: 600;
+    color: #0a5d66;
+    display: block;
+    margin-bottom: 0.2rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid #bde3e8;
+    border-radius: 40px;
+    background: #f6fdfd;
+}
+
+.input-group input:focus {
+    border-color: #04838c;
+    outline: none;
+}
+
+.login-btn {
+    background: #0c727c;
+    color: white;
+    border: none;
+    padding: 0.9rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.reg-btn {
+    background: #eef8f9;
+    color: #0c727c;
+    border: 2px solid #0c727c;
+    padding: 0.9rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    width: 100%;
+    cursor: pointer;
+}
+
+.error-msg {
+    color: #b33a2a;
+    font-weight: 600;
+    margin-top: 0.8rem;
+}
+
+.fake-hint {
+    background: #e3f2f2;
+    padding: 0.8rem;
+    border-radius: 30px;
+    margin-top: 1.8rem;
+    border: 2px solid #ffb85c;
+    display: none;
+}
+
+.fake-hint.show {
+    display: block;
+}
+
+.main-site {
+    display: none;
+}
+
+.header {
+    background: white;
+    padding: 0.7rem 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 5px solid #febf5e;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    background: #0b747f;
+    color: #ffd78c;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.9rem;
+}
+
+.brand {
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: #004c57;
+}
+
+.brand span {
+    color: #e68400;
+}
+
+.vit-header {
+    background: #ffedb0;
+    padding: 0.4rem 1.2rem;
+    border-radius: 30px;
+    border: 3px solid #faa51a;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.profile-pic {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: #0c8793;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 2rem;
+    color: white;
+    border: 4px solid #ffeec2;
+    cursor: pointer;
+}
+
+.user-greeting {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.greeting-text {
+    font-weight: 600;
+    color: #0a6a75;
+}
+
+.nav-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+    margin: 1.5rem 5% 0.5rem;
+    background: white;
+    padding: 1rem 1.8rem;
+    border-radius: 60px;
+    border: 3px solid #99d6dd;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    color: #0b6a74;
+    cursor: pointer;
+    border-bottom: 4px solid transparent;
+}
+
+.nav-item i {
+    font-size: 1.7rem;
+    color: #0e818d;
+}
+
+.nav-item.active-tab {
+    border-bottom-color: #fd9426;
+    color: #02434b;
+}
+
+.section-container {
+    margin: 1rem 5%;
+}
+
+.category-section {
+    display: none;
+}
+
+.category-section.active-section {
+    display: block;
+}
+
+.section-title {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: #075a63;
+    display: flex;
+    gap: 12px;
+    margin-bottom: 1.8rem;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+}
+
+.card {
+    background: white;
+    border-radius: 28px 16px;
+    padding: 1.8rem 1rem;
+    border: 3px solid #fbc164;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card i {
+    font-size: 3rem;
+    color: #0e818d;
+    background: #e0f3f5;
+    padding: 14px;
+    border-radius: 30px;
+}
+
+.card h3 {
+    margin: 0.7rem 0 0.2rem;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #06515b;
+}
+
+.price {
+    font-weight: 700;
+    color: #aa4213;
+    background: #fde2c0;
+    padding: 5px 18px;
+    border-radius: 40px;
+    display: inline-block;
+    margin: 12px 0;
+}
+
+.book-btn {
+    background: #ffae42;
+    border: none;
+    font-weight: 700;
+    padding: 10px 22px;
+    border-radius: 40px;
+    width: 100%;
+    border-bottom: 5px solid #b87329;
+    cursor: pointer;
+}
+
+.booking-summary {
+    background: white;
+    border-radius: 30px 16px;
+    padding: 1.5rem 1.8rem;
+    margin: 2rem 5%;
+    border: 4px solid #a4dbe0;
+}
+
+.summary-header {
+    display: flex;
+    gap: 14px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #0a6873;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.checkout-btn {
+    background: #0c727c;
+    color: white;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 30px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.order-list {
+    margin-top: 1.2rem;
+    background: #cceceb;
+    padding: 1.2rem;
+    border-radius: 32px;
+    list-style: none;
+}
+
+.order-list li {
+    background: white;
+    padding: 0.7rem 1.2rem;
+    margin-bottom: 8px;
+    border-radius: 60px;
+    display: flex;
+    justify-content: space-between;
+    border-left: 8px solid #1199a3;
+}
+
+footer {
+    background: #045a61;
+    color: white;
+    padding: 1.8rem 5%;
+    margin-top: 2.2rem;
+    border-radius: 50px 50px 0 0;
+}
+
+.vit-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.vit-footer span {
+    background: #fbe89e;
+    color: #023b42;
+    padding: 0.4rem 1.5rem;
+    border-radius: 40px;
+    border: 3px solid #fdad2a;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.carousel,
+.carousel-inner,
+.carousel-item,
+.carousel-item img {
+    height: 450px;
+    width: 100%;
+}
+
+.carousel-item img {
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .carousel,
+    .carousel-inner,
+    .carousel-item,
+    .carousel-item img {
+        height: 300px;
+    }
+}
+.login-srihari{
+    position: absolute;
+    top: 20px; 
+    right: 20px;
+    background: #0b747f;    
+    color: #e6bb6c;
+    padding: 12px 24px;
+    border-radius: 40px;
+    border: 4px solid #ffeec2;
+    padding: 12px 24px;
+    font-size: 1.8rem;
+}
+.slides{
+    height:60vh;
+}
+
+/* Reviews Ext. styling */
+.reviews-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.review-card {
+    background: white;
+    border-radius: 20px;
+    padding: 1.2rem;
+    border: 2px solid #a4dbe0;
+    display: flex;
+    flex-direction: column;
+}
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+.review-ratings {
+    color: #ffae42;
+}
+.review-text {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 15px;
+}
+.react-btn {
+    background: #eef8f9;
+    color: #0c727c;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    align-self: flex-start;
+}
+.react-btn:hover {
+    background: #cceceb;
+}

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wonderla · deep waterpark</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="loginOverlay" class="login-overlay">
+        <div class="vit-ap-logo">
+            <a href="https://vitap.ac.in/" target="_blank">VIT-AP</a>
+        </div>
+        <div class="login-srihari">
+            <a href="https://drive.google.com/file/d/1GY8ZktjNVLWUMAXqoCRMI7u1KQu1O2HC/view?usp=sharing" target="_blank">Sri Hari</a>
+        </div>
+        <div class="login-card">
+            <h2>wonderla</h2>
+            <div class="login-sub">deep waterpark login</div>
+            
+            <div class="input-group">
+                <label>username</label>
+                <input type="text" id="username" placeholder="e.g. admin, alex, tara" autocomplete="off">
+            </div>
+            
+            <div class="input-group">
+                <label>password</label>
+                <input type="password" id="password" placeholder="enter secret">
+            </div>
+            
+            <button id="loginBtn" class="login-btn"><i class="fas fa-chevron-circle-right"></i> dive in (login)</button>
+            <button id="registerBtn" class="reg-btn"><i class="fas fa-user-plus"></i> sign up</button>
+            <div id="loginError" class="error-msg"></div>
+            
+            <div id="hintDiv" class="fake-hint">
+                <i class="fas fa-life-ring"></i> hint: Create an account!
+            </div>
+        </div>
+    </div>
+
+    <div id="mainSite" class="main-site">
+        <header class="header">
+            <div class="logo-area">
+                <div class="logo-icon"><i class="fas fa-umbrella-beach"></i></div>
+                <div class="brand">wonder<span>la</span></div>
+            </div>
+            <div class="vit-header">deep waterpark</div>
+            <div class="user-greeting">
+                <span id="welcomeMsg" class="greeting-text">welcome, guest!</span>
+                <div id="profilePic" class="profile-pic" title="Logout">G</div>
+            </div>
+        </header>
+
+        <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner slides">
+                <div class="carousel-item active">
+                    <img src="https://www.prestigesouthernstar.info/images/prestige/wonderla-amusement-park.webp" alt="slide1">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.staybook.in/things-to-do/skip-the-line-admission-wonderla-amusement-park-kochi/1.jpg" alt="slide2">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://media.insider.in/image/upload/c_crop,g_custom/v1767501499/idjxqs2w2krvnffq3ews.jpg" alt="slide3">
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-pills">
+            <div class="nav-item active-tab" data-section="rides"><i class="fas fa-water-ladder"></i> <span>rides</span></div>
+            <div class="nav-item" data-section="food"><i class="fas fa-utensils"></i> <span>food</span></div>
+            <div class="nav-item" data-section="stays"><i class="fas fa-campground"></i> <span>stays</span></div>
+            <div class="nav-item" data-section="events"><i class="fas fa-calendar-alt"></i> <span>events</span></div>
+            <div class="nav-item" data-section="reviews"><i class="fas fa-comments"></i> <span>community</span></div>
+            <div class="nav-item" data-section="history"><i class="fas fa-history"></i> <span>history</span></div>
+        </div>
+
+        <div class="section-container">
+            <div id="rides" class="category-section active-section">
+                <div class="section-title"><i class="fas fa-water"></i> wave adventures</div>
+                <div class="card-grid">
+                    <div class="card">
+                        <i class="fas fa-dragon"></i><h3>twister slide</h3><div class="avg-rating" data-product="twister slide"></div><div class="price">₹ 850</div>
+                        <button class="book-btn" data-item="twister slide" data-price="850"><i class="fas fa-check"></i> book now</button>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-water"></i><h3>lazy river</h3><div class="avg-rating" data-product="lazy river"></div><div class="price">₹ 490</div>
+                        <button class="book-btn" data-item="lazy river" data-price="490"><i class="fas fa-check"></i> book now</button>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-swimmer"></i><h3>whirlpool rush</h3><div class="avg-rating" data-product="whirlpool rush"></div><div class="price">₹ 1100</div>
+                        <button class="book-btn" data-item="whirlpool rush" data-price="1100"><i class="fas fa-check"></i> book now</button>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-child"></i><h3>kiddie pool</h3><div class="avg-rating" data-product="kiddie pool"></div><div class="price">₹ 390</div>
+                        <button class="book-btn" data-item="kiddie pool" data-price="390"><i class="fas fa-check"></i> book now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="food" class="category-section">
+                <div class="section-title"><i class="fas fa-ice-cream"></i> splash bites</div>
+                <div class="card-grid">
+                    <div class="card">
+                        <i class="fas fa-pizza-slice"></i><h3>margherita pizza</h3><div class="avg-rating" data-product="margherita pizza"></div><div class="price">₹ 240</div>
+                        <button class="book-btn" data-item="margherita pizza" data-price="240"><i class="fas fa-check"></i> add</button>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-ice-cream"></i><h3>ice cream</h3><div class="avg-rating" data-product="ice cream"></div><div class="price">₹ 95</div>
+                        <button class="book-btn" data-item="ice cream" data-price="95"><i class="fas fa-check"></i> add</button>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-cocktail"></i><h3>mocktail</h3><div class="avg-rating" data-product="mocktail"></div><div class="price">₹ 130</div>
+                        <button class="book-btn" data-item="mocktail" data-price="130"><i class="fas fa-check"></i> add</button>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-hamburger"></i><h3>veggie burger</h3><div class="avg-rating" data-product="veggie burger"></div><div class="price">₹ 190</div>
+                        <button class="book-btn" data-item="veggie burger" data-price="190"><i class="fas fa-check"></i> add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="stays" class="category-section">
+                <div class="section-title"><i class="fas fa-campground"></i> cabana & stays</div>
+                <div class="card-grid">
+                    <div class="card">
+                        <i class="fas fa-umbrella-beach"></i><h3>beach cabana</h3><div class="avg-rating" data-product="beach cabana"></div><div class="price">₹ 1990</div>
+                        <button class="book-btn" data-item="beach cabana" data-price="1990"><i class="fas fa-check"></i> reserve</button>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-water"></i><h3>private pool villa</h3><div class="avg-rating" data-product="private pool villa"></div><div class="price">₹ 5490</div>
+                        <button class="book-btn" data-item="private pool villa" data-price="5490"><i class="fas fa-check"></i> reserve</button>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-campground"></i><h3>cabana lounge</h3><div class="avg-rating" data-product="cabana lounge"></div><div class="price">₹ 1490</div>
+                        <button class="book-btn" data-item="cabana lounge" data-price="1490"><i class="fas fa-check"></i> reserve</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="events" class="category-section">
+                <div class="section-title"><i class="fas fa-calendar-week"></i> special events</div>
+                <div class="card-grid">
+                    <div class="card">
+                        <i class="fas fa-music"></i><h3>poolside dj pass</h3><div class="avg-rating" data-product="poolside dj pass"></div><div class="price">₹ 650</div>
+                        <button class="book-btn" data-item="poolside dj pass" data-price="650"><i class="fas fa-check"></i> join</button>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-birthday-cake"></i><h3>birthday bash</h3><div class="avg-rating" data-product="birthday bash"></div><div class="price">₹ 1250</div>
+                        <button class="book-btn" data-item="birthday bash" data-price="1250"><i class="fas fa-check"></i> join</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="reviews" class="category-section">
+                <div class="section-title"><i class="fas fa-heart"></i> community reviews</div>
+                <div id="reviews-container" class="reviews-grid">
+                    <p>Loading community intelligence...</p>
+                </div>
+            </div>
+
+            <div id="history" class="category-section">
+                <div class="section-title"><i class="fas fa-history"></i> your booking history</div>
+                <div id="history-container" class="reviews-grid">
+                    <p>No bookings found.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="booking-summary">
+            <div class="summary-header">
+                <span><i class="fas fa-shopping-cart"></i> your splash cart · <span id="cartCount">0 items</span></span>
+                <button id="checkoutBtn" class="checkout-btn" style="display:none;">Checkout</button>
+            </div>
+            <ul id="orderList" class="order-list">
+                <li style="justify-content: center;">— no bookings yet —</li>
+            </ul>
+        </div>
+
+        <!-- Product Reviews Modal -->
+        <div class="modal fade" id="productReviewsModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalProductTitle">Product Reviews</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="modalReviewsContainer" class="reviews-grid">
+                            <p>Loading...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add to Cart Config Modal -->
+        <div class="modal fade" id="addToCartConfigModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content" style="border: 4px solid #a4dbe0; border-radius: 20px;">
+                    <div class="modal-header" style="border-bottom: none; padding-bottom: 0;">
+                        <h5 class="modal-title" id="configModalTitle" style="color: #06515b; font-weight: bold; font-size: 1.4rem;">Configure Booking</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="padding-top: 10px;">
+                        <input type="hidden" id="configItemName">
+                        <input type="hidden" id="configItemPrice">
+                        
+                        <div class="input-group" style="margin-bottom: 20px;">
+                            <label style="color: #0a5d66;">Select Time Slot</label>
+                            <select id="configItemSlot" style="width: 100%; padding: 0.8rem 1rem; border: 2px solid #bde3e8; border-radius: 20px; background: #f6fdfd; outline: none;">
+                                <option value="10:00 AM">10:00 AM</option>
+                                <option value="12:00 PM">12:00 PM</option>
+                                <option value="02:00 PM">02:00 PM</option>
+                                <option value="04:00 PM">04:00 PM</option>
+                                <option value="06:00 PM">06:00 PM</option>
+                            </select>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label style="color: #0a5d66;">Quantity</label>
+                            <input type="number" id="configItemQuantity" value="1" min="1" max="50">
+                        </div>
+
+                        <button id="confirmAddToCartBtn" class="book-btn" style="margin-top: 10px;">Add to Cart <i class="fas fa-cart-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="vit-footer">
+                <span> emergency</span>
+                <span>kochi · bangalore · chennai</span>
+                <span>wonderla deep park</span>
+            </div>
+            <div style="text-align: center; margin-top: 1.5rem; opacity: 0.9;">
+                Created by <strong>Sri Hari-23BCE9966</strong>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
