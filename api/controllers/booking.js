@@ -41,7 +41,8 @@ exports.getUserBookings = async (req, res) => {
     try {
         const result = await session.run(`
             MATCH (u:User {id: $userId})-[b:BOOKED]->(p:Product)
-            RETURN toString(b.date) AS date, p.name AS product, b.pricePaid AS price, coalesce(b.quantity, 1) AS quantity, coalesce(b.timeSlot, 'N/A') AS slot
+            OPTIONAL MATCH (u)-[:WROTE]->(r:Review)-[:ABOUT]->(p)
+            RETURN toString(b.date) AS date, p.name AS product, b.pricePaid AS price, coalesce(b.quantity, 1) AS quantity, coalesce(b.timeSlot, 'N/A') AS slot, r.text AS reviewText, r.rating AS reviewRating
             ORDER BY b.date DESC
         `, { userId });
         
@@ -50,7 +51,9 @@ exports.getUserBookings = async (req, res) => {
             product: r.get('product'),
             price: r.get('price'),
             quantity: r.get('quantity').toNumber ? r.get('quantity').toNumber() : r.get('quantity'),
-            slot: r.get('slot')
+            slot: r.get('slot'),
+            reviewText: r.get('reviewText'),
+            reviewRating: r.get('reviewRating') ? (r.get('reviewRating').toNumber ? r.get('reviewRating').toNumber() : r.get('reviewRating')) : null
         }));
         
         res.json(bookings);

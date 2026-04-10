@@ -234,6 +234,25 @@ document.addEventListener('DOMContentLoaded', () => {
             container.innerHTML = '';
             bookings.forEach(b => {
                 const qtyStr = b.quantity > 1 ? `x${b.quantity} ` : '';
+                let reviewHtml = '';
+                if (b.reviewText) {
+                    reviewHtml = `
+                        <div style="background: #fdfdfd; padding: 10px; border-radius: 8px; border-left: 4px solid #ffae42;">
+                            <strong style="color: #666;"><i class="fas fa-check-circle" style="color: #0ea1ab;"></i> You reviewed this:</strong>
+                            <div style="margin-top: 5px;"><span style="color:#ffae42;">${'⭐'.repeat(b.reviewRating)}</span> "${b.reviewText}"</div>
+                        </div>
+                    `;
+                } else {
+                    reviewHtml = `
+                        <div style="background: #f8f9fa; padding: 10px; border-radius: 8px;">
+                            <strong>Leave a Review:</strong><br>
+                            <input type="number" id="rating-${b.product.replace(/\s+/g,'-')}" min="1" max="5" placeholder="1-5" style="width: 60px; margin-right: 10px;">
+                            <input type="text" id="text-${b.product.replace(/\s+/g,'-')}" placeholder="Your experience..." style="width: 200px; margin-right: 10px;">
+                            <button class="react-btn" onclick="submitReview('${b.product}')">Submit</button>
+                        </div>
+                    `;
+                }
+
                 container.innerHTML += `
                     <div class="review-card" style="margin-bottom: 10px;">
                         <div class="review-header">
@@ -243,12 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div style="font-size: 0.8rem; color: #666; margin-bottom: 10px;">
                             Booked on: ${new Date(b.date).toLocaleDateString()} | Slot: <strong>${b.slot || 'N/A'}</strong>
                         </div>
-                        <div style="background: #f8f9fa; padding: 10px; border-radius: 8px;">
-                            <strong>Leave a Review:</strong><br>
-                            <input type="number" id="rating-${b.product}" min="1" max="5" placeholder="1-5" style="width: 60px; margin-right: 10px;">
-                            <input type="text" id="text-${b.product}" placeholder="Your experience..." style="width: 200px; margin-right: 10px;">
-                            <button class="react-btn" onclick="submitReview('${b.product}')">Submit</button>
-                        </div>
+                        ${reviewHtml}
                     </div>
                 `;
             });
@@ -256,8 +270,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     window.submitReview = async function(productName) {
-        const rating = document.getElementById(`rating-${productName}`).value;
-        const text = document.getElementById(`text-${productName}`).value;
+        const idBase = productName.replace(/\s+/g,'-');
+        const rating = document.getElementById(`rating-${idBase}`).value;
+        const text = document.getElementById(`text-${idBase}`).value;
         if (!rating || !text) return alert("Please provide rating and review text");
 
         const res = await fetch('/api/social/reviews', {
