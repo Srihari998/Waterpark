@@ -14,7 +14,7 @@ const bookingRoutes = require('./routes/booking');
 const socialRoutes = require('./routes/social');
 const adminRoutes = require('./routes/admin');
 const db = require('./config/db');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
